@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Appliances of Broward — Tech Field Guide</title>
+<style>
+  :root {
+    --navy: #0A2342;
+    --navy-dark: #061629;
+    --teal: #0B7EA3;
+    --teal-light: #E6F3F8;
+    --green: #1A7F4B;
+    --green-light: #E4F3EB;
+    --amber: #B87A00;
+    --amber-light: #FBF2DD;
+    --red: #B42318;
+    --red-light: #FEE4E2;
+    --bg: #F7F9FB;
+    --card: #FFFFFF;
+    --border: #E3E8EE;
+    --border-strong: #CBD5E1;
+    --text: #1C2430;
+    --text-muted: #5A6878;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    font-size: 16px;
+  }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 0 18px; }
+
+  header {
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+    color: white;
+    padding: 24px 0 22px;
+    border-bottom: 4px solid var(--teal);
+  }
+  .badge-small {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  h1 { font-size: 22px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.3px; }
+  .subtitle { color: #C5DCE8; font-size: 13px; }
+
+  nav.tabs {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .tab-row { display: flex; gap: 2px; overflow-x: auto; }
+  .tab {
+    padding: 14px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .tab.active { color: var(--navy); border-bottom-color: var(--teal); background: var(--bg); }
+
+  main { padding: 24px 0 40px; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  h2 + .section-sub { color: var(--text-muted); font-size: 13px; margin-bottom: 16px; }
+  h3 { font-size: 14px; font-weight: 700; color: var(--navy); margin: 18px 0 10px; }
+
+  /* Status card — mobile style big taps */
+  .status-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--teal);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .status-block .sb-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .status-block .sb-step {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--teal);
+    letter-spacing: -0.5px;
+  }
+  .status-block .sb-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .status-block .sb-when {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+  .status-block h4 {
+    font-size: 12px;
+    color: var(--navy);
+    margin: 10px 0 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .status-block ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+  }
+  .status-block ul li {
+    padding: 8px 12px;
+    background: var(--bg);
+    border-radius: 6px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: var(--text);
+    border-left: 3px solid var(--teal);
+  }
+
+  .tap-button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: var(--teal);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 8px;
+    margin: 10px 0 0;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+  .tap-button.green { background: var(--green); }
+  .tap-button.amber { background: var(--amber); }
+
+  .callout {
+    background: var(--teal-light);
+    border-left: 4px solid var(--teal);
+    padding: 12px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--navy);
+    margin: 10px 0;
+  }
+  .callout.amber { background: var(--amber-light); border-left-color: var(--amber); color: #5A3D00; }
+  .callout.green { background: var(--green-light); border-left-color: var(--green); color: #0B4A2A; }
+  .callout strong { display: block; margin-bottom: 4px; font-size: 11px; letter-spacing: 0.5px; text-transform: uppercase; }
+
+  .rule {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 10px;
+  }
+  .rule h5 { font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .rule p { font-size: 13px; color: var(--text-muted); }
+
+  .quick-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 12px 0;
+  }
+  .coming-soon {
+    background: linear-gradient(135deg, var(--amber-light) 0%, #FBEBC7 100%);
+    border: 1px solid var(--amber);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .coming-soon .cs-label {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+  .coming-soon h3 { margin: 0 0 6px 0; color: #5A3D00; }
+  .coming-soon p { font-size: 13px; color: #5A3D00; }
+
+  /* ClearPath preview - phone-style frame */
+  .phone-frame {
+    max-width: 320px;
+    margin: 18px auto;
+    background: white;
+    border: 3px solid var(--navy);
+    border-radius: 28px;
+    padding: 18px 14px;
+    box-shadow: 0 8px 24px rgba(10, 35, 66, 0.15);
+  }
+  .phone-frame .phone-header {
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .phone-frame .phone-header .job-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .phone-frame .phone-header .customer {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .phone-frame .widgets {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .phone-frame .widget {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 6px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+  .phone-frame .instr {
+    background: var(--teal-light);
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 12px;
+    color: var(--navy);
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+  .phone-frame .big-btn {
+    display: block;
+    padding: 12px;
+    background: var(--teal);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .phone-frame .big-btn.green { background: var(--green); }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 19px; }
+    .wrap { padding: 0 14px; }
+    .tab { padding: 12px 10px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="badge-small">Appliances of Broward · Tech Field Guide</span>
+    <h1>Tech Field Guide — FieldPulse Mobile</h1>
+    <p class="subtitle">For Casey. What to tap, when, and why. Built for your phone.</p>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="wrap">
+    <div class="tab-row">
+      <button class="tab active" data-panel="flow">Your Day</button>
+      <button class="tab" data-panel="statuses">Status-by-Status</button>
+      <button class="tab" data-panel="clearpath">ClearPath (Coming)</button>
+      <button class="tab" data-panel="tips">Tips &amp; Rules</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+<!-- =================== YOUR DAY =================== -->
+<section class="panel active" id="flow">
+  <h2>Your day on FieldPulse</h2>
+  <p class="section-sub">Five statuses, from scheduled to done. Most jobs run the same way.</p>
+
+  <div class="callout green">
+    <strong>One thing to remember</strong>
+    Tap the status as the thing happens — not 10 minutes later. The office and the customer see updates the moment you tap.
+  </div>
+
+  <div class="status-block">
+    <div class="sb-head">
+      <div class="sb-name">Morning</div>
+      <div class="sb-step">AM</div>
+    </div>
+    <div class="sb-when">Before you leave the shop or driveway.</div>
+    <h4>Open FieldPulse on your phone</h4>
+    <ul>
+      <li>Check <strong>My Schedule</strong> — your jobs for the day in order.</li>
+      <li>Tap into each job to see the customer, address, and what's wrong.</li>
+      <li>Load the truck with what you'll likely need.</li>
+    </ul>
+  </div>
+
+  <div class="status-block">
+    <div class="sb-head">
+      <div class="sb-name">Leaving for a job</div>
+      <div class="sb-step">GO</div>
+    </div>
+    <div class="sb-when">You're rolling to the customer.</div>
+    <h4>Tap this</h4>
+    <span class="tap-button">On The Way (OMW)</span>
+    <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">Customer gets an auto-text that you're on your way. Office sees it too.</p>
+  </div>
+
+  <div class="status-block">
+    <div class="sb-head">
+      <div class="sb-name">Arrive at the house</div>
+      <div class="sb-step">IN</div>
+    </div>
+    <div class="sb-when">Truck is parked, you're walking up.</div>
+    <h4>Tap this</h4>
+    <span class="tap-button">On Site</span>
+    <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">Starts the clock. Office knows you arrived without you having to call in.</p>
+  </div>
+
+  <div class="status-block">
+    <div class="sb-head">
+      <div class="sb-name">Start the diagnostic / repair</div>
+      <div class="sb-step">GO</div>
+    </div>
+    <div class="sb-when">Hands on the appliance.</div>
+    <h4>Tap this</h4>
+    <span class="tap-button">In Progress</span>
+    <h4>While you work</h4>
+    <ul>
+      <li>Take photos of the appliance — model, serial, damage, part needed.</li>
+      <li>Add notes inside the job: what you found, what's broken, what you need.</li>
+      <li>Attach photos to the job (they save to the customer record too).</li>
+    </ul>
+  </div>
+
+  <div class="status-block">
+    <div class="sb-head">
+      <div class="sb-name">Wrap up the visit</div>
+      <div class="sb-step">END</div>
+    </div>
+    <div class="sb-when">You're walking out the door.</div>
+    <h4>Tap this</h4>
+    <span class="tap-button green">Work Completed</span>
+    <h4>Before you leave</h4>
+    <ul>
+      <li>If the customer paid at the door → run the card or log the check on your phone.</li>
+      <li>If the repair is approved and done → same payment.</li>
+      <li>If it was only a diagnostic → let Taylor know so she can build the estimate.</li>
+    </ul>
+  </div>
+
+  <div class="callout amber">
+    <strong>If something is off</strong>
+    Parts not in stock? Customer not home? Access problem? Add a note in the job and call Taylor. Don't skip ahead to "Work Completed" — leave the status where it actually is.
+  </div>
+</section>
+
+<!-- =================== STATUS BY STATUS =================== -->
+<section class="panel" id="statuses">
+  <h2>Status-by-status</h2>
+  <p class="section-sub">What each one means. What you tap. What the office sees.</p>
+
+  <div class="status-block">
+    <div class="sb-head">
+      <div class="sb-name">1. Scheduled</div>
+    </div>
+    <div class="sb-when">Office booked the call. Shows on your schedule.</div>
+    <h4>You do</h4>
+    <ul><li>Nothing yet. Just open it to read the details before you leave.</li></ul>
+  </div>
+
+  <div class="status-block">
+    <div class="sb-head">
+      <div class="sb-name">2. On The Way</div>
+    </div>
+    <div class="sb-when">You tap this when leaving for the job.</div>
+    <span class="tap-button">Tap: OMW</span>
+    <h4>What happens</h4>
+    <ul>
+      <li>Customer gets a text: "Casey is on the way."</li>
+      <li>Office sees it on the schedule.</li>
+    </ul>
+  </div>
+
+  <div class="status-block">
+    <div class="sb-head">
+      <div class="sb-name">3. On Site</div>
+    </div>
+    <div class="sb-when">You arrive at the customer's home.</div>
+    <span class="tap-button">Tap: On Site</span>
+    <h4>What happens</h4>
+    <ul>
+      <li>Starts tracking your arrival time.</li>
+      <li>Office can see you made it.</li>
+    </ul>
+  </div>
+
+  <div class="status-block">
+    <div class="sb-head">
+      <div class="sb-name">4. In Progress</div>
+    </div>
+    <div class="sb-when">You start the work — diagnostic or repair.</div>
+    <span class="tap-button">Tap: In Progress</span>
+    <h4>While in this status</h4>
+    <ul>
+      <li>Take photos.</li>
+      <li>Add notes.</li>
+      <li>Log part numbers you'll need to order.</li>
+    </ul>
+  </div>
+
+  <div class="status-block">
+    <div class="sb-head">
+      <div class="sb-name">5. Work Completed</div>
+    </div>
+    <div class="sb-when">Work is done (or visit is done). You're wrapping up.</div>
+    <span class="tap-button green">Tap: Work Completed</span>
+    <h4>What happens</h4>
+    <ul>
+      <li>Office gets the signal to build the estimate or send the invoice.</li>
+      <li>If customer pays at the door, you take payment right on your phone.</li>
+      <li>Job closes on your schedule.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- =================== CLEARPATH =================== -->
+<section class="panel" id="clearpath">
+  <h2>ClearPath — coming in Week 3</h2>
+  <p class="section-sub">Taylor and Charlee will set this up with your input. It makes the whole flow one-tap-simple.</p>
+
+  <div class="coming-soon">
+    <div class="cs-label">Rolling out Week 3-4</div>
+    <h3>What ClearPath is</h3>
+    <p>A mobile-only, one-screen view for each job. Instead of hunting for the status button or flipping between tabs, you see exactly what to do next. Big buttons. No digging.</p>
+  </div>
+
+  <h3>Here is what it will look like on your phone</h3>
+
+  <div class="phone-frame">
+    <div class="phone-header">
+      <div class="job-title">Refrigerator not cooling</div>
+      <div class="customer">Smith Residence · 10:00 AM</div>
+    </div>
+    <div class="widgets">
+      <div class="widget">Navigate</div>
+      <div class="widget">Call Customer</div>
+      <div class="widget">Add Note</div>
+      <div class="widget">Photos</div>
+    </div>
+    <div class="instr">
+      "Tap On The Way before leaving. Take driveway photo on arrival."
+    </div>
+    <div class="big-btn">On The Way</div>
+    <div class="big-btn green">On Site</div>
+  </div>
+
+  <h3>How we'll build it</h3>
+  <div class="rule">
+    <h5>Step 1 — Tell us what you need at each step</h5>
+    <p>Charlee and Taylor will ask you: at each status, what are the top 2-3 things you need to do? (Navigate, call, take photo, add note.) Those become the widgets.</p>
+  </div>
+  <div class="rule">
+    <h5>Step 2 — Tell us your rules</h5>
+    <p>"Always take a photo before starting." "Always confirm customer is home before tapping On Site." Those become the instructions on-screen.</p>
+  </div>
+  <div class="rule">
+    <h5>Step 3 — We build it as a FieldPulse support case</h5>
+    <p>Once the plan is finalized, Charlee submits the case. FieldPulse's team builds the ClearPath. Then you test it on a real job.</p>
+  </div>
+
+  <div class="callout">
+    <strong>Your input matters most</strong>
+    You're the one using it. If a button or instruction doesn't help you, say so — we change it. This is built around how you actually work, not a script.
+  </div>
+</section>
+
+<!-- =================== TIPS =================== -->
+<section class="panel" id="tips">
+  <h2>Tips, rules, and red flags</h2>
+  <p class="section-sub">The handful of habits that make the day run clean.</p>
+
+  <h3>The five habits</h3>
+  <div class="rule">
+    <h5>1. Tap the status as it happens</h5>
+    <p>Not after. The second you're leaving → OMW. The second you park → On Site. The second you start → In Progress. The moment you wrap → Work Completed.</p>
+  </div>
+  <div class="rule">
+    <h5>2. Take the photos</h5>
+    <p>Model number, serial plate, the broken part, any damage. Photos prove the story and save arguments later.</p>
+  </div>
+  <div class="rule">
+    <h5>3. Write the note before you leave the house</h5>
+    <p>You'll forget details by the next job. 30 seconds of notes on-site saves Taylor 15 minutes of chasing later.</p>
+  </div>
+  <div class="rule">
+    <h5>4. If the customer signs off → run the card</h5>
+    <p>You can run payment from your phone. Don't let them say "I'll pay online later" and then disappear.</p>
+  </div>
+  <div class="rule">
+    <h5>5. When in doubt — call the office</h5>
+    <p>Better to pause and text Taylor than to guess. Especially on pricing, authorizations, or warranty stuff.</p>
+  </div>
+
+  <h3>Red flags — don't do these</h3>
+  <div class="quick-grid">
+    <div class="callout amber">
+      <strong>Don't skip statuses</strong>
+      Don't jump from Scheduled straight to Work Completed. Every step matters for the office and the customer.
+    </div>
+    <div class="callout amber">
+      <strong>Don't close a job with no notes</strong>
+      If there are no notes or photos, the office can't build the estimate and the customer gets a bad experience.
+    </div>
+    <div class="callout amber">
+      <strong>Don't quote pricing not on the estimate</strong>
+      If a customer asks about extra work, write it in your notes. Office builds the quote. Protects you and the shop.
+    </div>
+  </div>
+
+  <h3>When to message the office</h3>
+  <ul style="margin-left: 20px; font-size: 14px;">
+    <li>Customer isn't home.</li>
+    <li>Job is bigger than expected — you'll run long.</li>
+    <li>Parts aren't in the truck and you need them ordered.</li>
+    <li>Customer wants a refund or credit.</li>
+    <li>Anything weird with the customer, the appliance, or access.</li>
+  </ul>
+
+  <div class="callout green">
+    <strong>First two weeks</strong>
+    Expect some learning-curve moments. That's normal. By week 3 the phone-first flow will feel faster than HCP. Ask questions. We'll fix things as we go.
+  </div>
+</section>
+
+</div>
+</main>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.panel');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    t.classList.add('active');
+    const target = document.getElementById(t.dataset.panel);
+    if (target) target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }));
+</script>
+
+</body>
+</html>

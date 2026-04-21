@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Appliances of Broward — Office Admin Quick Guide</title>
+<style>
+  :root {
+    --navy: #0A2342;
+    --navy-dark: #061629;
+    --teal: #0B7EA3;
+    --teal-light: #E6F3F8;
+    --green: #1A7F4B;
+    --green-light: #E4F3EB;
+    --amber: #B87A00;
+    --amber-light: #FBF2DD;
+    --red: #B42318;
+    --red-light: #FEE4E2;
+    --bg: #F7F9FB;
+    --card: #FFFFFF;
+    --border: #E3E8EE;
+    --border-strong: #CBD5E1;
+    --text: #1C2430;
+    --text-muted: #5A6878;
+    --text-faint: #8A96A3;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    font-size: 15px;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+    color: white;
+    padding: 32px 0 28px;
+    border-bottom: 4px solid var(--teal);
+  }
+  .badge-small {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.5px; }
+  .subtitle { color: #C5DCE8; font-size: 14px; font-weight: 400; }
+
+  nav.tabs {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .tab-row { display: flex; gap: 2px; overflow-x: auto; }
+  .tab {
+    padding: 16px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+  .tab:hover { color: var(--text); background: var(--bg); }
+  .tab.active { color: var(--navy); border-bottom-color: var(--teal); background: var(--bg); }
+
+  main { padding: 32px 0 48px; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+  }
+  h2 + .section-sub { color: var(--text-muted); font-size: 13px; margin-bottom: 18px; }
+  h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin: 20px 0 10px; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .card-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+
+  .callout {
+    background: var(--teal-light);
+    border-left: 4px solid var(--teal);
+    padding: 12px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--navy);
+    margin: 10px 0;
+  }
+  .callout.amber { background: var(--amber-light); border-left-color: var(--amber); color: #5A3D00; }
+  .callout.green { background: var(--green-light); border-left-color: var(--green); color: #0B4A2A; }
+  .callout strong { display: block; margin-bottom: 4px; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
+
+  /* Step-by-step list */
+  ol.steps { list-style: none; counter-reset: step; margin: 10px 0; }
+  ol.steps li {
+    counter-increment: step;
+    padding: 10px 12px 10px 48px;
+    position: relative;
+    background: var(--bg);
+    border-left: 3px solid var(--teal);
+    margin-bottom: 6px;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  ol.steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    width: 24px;
+    height: 24px;
+    background: var(--teal);
+    color: white;
+    font-weight: 700;
+    font-size: 12px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  ol.steps li strong { color: var(--navy); }
+  ol.steps li code {
+    font-family: Menlo, Monaco, Consolas, monospace;
+    font-size: 12px;
+    background: white;
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+
+  /* Status cards */
+  .status-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--teal);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .status-card .status-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .status-card .status-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .status-card .status-step {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 10px;
+    background: var(--teal-light);
+    color: var(--teal);
+  }
+  .status-card .when {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .status-card h4 {
+    font-size: 13px;
+    color: var(--navy);
+    margin: 10px 0 6px;
+  }
+  .status-card ul { margin: 0 0 10px 20px; font-size: 13.5px; color: var(--text); }
+  .status-card ul li { margin-bottom: 4px; }
+  .status-card textarea {
+    width: 100%;
+    min-height: 60px;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 13px;
+    resize: vertical;
+    background: var(--bg);
+  }
+  .status-card textarea:focus { outline: 2px solid var(--teal); border-color: var(--teal); }
+
+  /* Estimate/Invoice path cards */
+  .path-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .path-card .path-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .path-card .path-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+
+  /* Quick reference grid */
+  .quick-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .quick-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--teal);
+    border-radius: 6px;
+    padding: 14px;
+  }
+  .quick-box h4 { font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .quick-box p { font-size: 13px; color: var(--text-muted); }
+  .quick-box .path {
+    font-family: Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    color: var(--text);
+    background: var(--bg);
+    padding: 4px 6px;
+    border-radius: 3px;
+    margin-top: 6px;
+    display: inline-block;
+  }
+
+  /* Daily flow */
+  .daily-block {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 14px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  .daily-block .time {
+    font-weight: 700;
+    color: var(--teal);
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .daily-block h5 {
+    font-size: 14px;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .daily-block p { font-size: 13px; color: var(--text-muted); }
+
+  /* Red flags table */
+  table.ref {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 13px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  table.ref th {
+    background: var(--navy);
+    color: white;
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  table.ref td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  table.ref tr:nth-child(even) td { background: var(--bg); }
+
+  .pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .pill.teal { background: var(--teal-light); color: var(--teal); }
+  .pill.green { background: var(--green-light); color: var(--green); }
+  .pill.amber { background: var(--amber-light); color: var(--amber); }
+  .pill.red { background: var(--red-light); color: var(--red); }
+
+  @media (max-width: 720px) {
+    .ws-grid { grid-template-columns: 1fr; }
+    .daily-block { grid-template-columns: 1fr; }
+    h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="badge-small">Appliances of Broward · Office Admin Guide</span>
+    <h1>Office Admin Quick Guide — FieldPulse</h1>
+    <p class="subtitle">For the office side: creating jobs, dispatching, managing estimates, invoicing, and collecting payment.</p>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="wrap">
+    <div class="tab-row">
+      <button class="tab active" data-panel="daily">Daily Flow</button>
+      <button class="tab" data-panel="newjob">Creating a Job</button>
+      <button class="tab" data-panel="statuses">Job Statuses (Office View)</button>
+      <button class="tab" data-panel="estimates">Estimates &amp; Approvals</button>
+      <button class="tab" data-panel="invoices">Invoicing &amp; Payment</button>
+      <button class="tab" data-panel="reference">Quick Reference</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+<!-- =================== DAILY FLOW =================== -->
+<section class="panel active" id="daily">
+  <h2>A day in the office</h2>
+  <p class="section-sub">This mirrors how the day flows in HCP — just in FieldPulse language. Nothing new to learn, just a new home.</p>
+
+  <div class="daily-block">
+    <div class="time">Morning</div>
+    <div>
+      <h5>Open FieldPulse and review the Scheduler</h5>
+      <p>Go to <strong>Schedule</strong> in the left panel. You will see everything booked for today. Confirm Casey is assigned to each job and times are correct.</p>
+    </div>
+  </div>
+
+  <div class="daily-block">
+    <div class="time">Calls Coming In</div>
+    <div>
+      <h5>Create jobs as calls come in</h5>
+      <p>For every new service call, create a <strong>Customer</strong> (if new) and then a <strong>Job</strong>. Schedule it to Casey. Job status starts as <em>Scheduled</em>.</p>
+    </div>
+  </div>
+
+  <div class="daily-block">
+    <div class="time">Mid-Day</div>
+    <div>
+      <h5>Watch for updates from Casey</h5>
+      <p>Casey moves jobs on his phone: <em>On The Way → On Site → In Progress → Work Completed</em>. You watch the Schedule and Job list. No more calling to check in.</p>
+    </div>
+  </div>
+
+  <div class="daily-block">
+    <div class="time">After a Site Visit</div>
+    <div>
+      <h5>Build the estimate if work is needed</h5>
+      <p>Once Casey completes the diagnostic, you build the estimate from the job. Send it to the customer with Option 1 and Option 2. Wait for approval.</p>
+    </div>
+  </div>
+
+  <div class="daily-block">
+    <div class="time">Approval</div>
+    <div>
+      <h5>Customer approves → you convert to invoice</h5>
+      <p>When the estimate is approved (customer signs or you mark approved), convert it into an invoice. Send it, take payment, mark paid.</p>
+    </div>
+  </div>
+
+  <div class="daily-block">
+    <div class="time">End of Day</div>
+    <div>
+      <h5>Close the loop</h5>
+      <p>Review any jobs still in <em>Work Completed</em> that are not invoiced. Review any open estimates. Flag anything that did not close today.</p>
+    </div>
+  </div>
+
+  <div class="callout green">
+    <strong>What is different from HCP</strong>
+    FieldPulse separates the <em>job</em> from the <em>estimate</em> from the <em>invoice</em>. In HCP they all blend together. In FieldPulse, a job goes through its statuses. The estimate has its own statuses. The invoice has its own statuses. Cleaner, easier to see where things stand.
+  </div>
+</section>
+
+<!-- =================== CREATING A JOB =================== -->
+<section class="panel" id="newjob">
+  <h2>How to create a new job</h2>
+  <p class="section-sub">The cleanest way to book a service call in FieldPulse.</p>
+
+  <h3>Step-by-step</h3>
+  <ol class="steps">
+    <li>In the left panel click <strong>Customers</strong>. Search for the customer by name, phone, or address.</li>
+    <li>If the customer exists, click their record. If not, click <strong>+ New Customer</strong> and fill in name, phone, email, and service address.</li>
+    <li>From inside the customer record click the <strong>Jobs</strong> tab, then <strong>+ New Job</strong>.</li>
+    <li>Fill in the job details: <code>Job Title</code> (example: "Dishwasher not draining"), <code>Description</code>, <code>Appliance Type</code>.</li>
+    <li>Assign to <strong>Casey</strong> in the assignee field.</li>
+    <li>Set the <strong>Scheduled Date</strong> and <strong>Arrival Window</strong> (example: 10 AM - 12 PM).</li>
+    <li>Confirm the status is <strong>Scheduled</strong>. Save.</li>
+    <li>Job now shows on the <strong>Schedule</strong> and on Casey's mobile app.</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Pro tip</strong>
+    Use a clear, short <em>Job Title</em>. That title shows on Casey's phone and in the customer-facing reminders. Example: "Refrigerator not cooling - follow up" reads better than "Service call".
+  </div>
+
+  <h3>What the customer sees</h3>
+  <ul style="margin-left: 20px; font-size: 14px;">
+    <li>A scheduled confirmation (if customer notifications are on).</li>
+    <li>An arrival-window reminder before the visit.</li>
+    <li>An "On the way" text when Casey taps <em>OMW</em>.</li>
+  </ul>
+</section>
+
+<!-- =================== JOB STATUSES =================== -->
+<section class="panel" id="statuses">
+  <h2>Job statuses — office view</h2>
+  <p class="section-sub">What each status means and what <em>you</em> do when it changes. Casey moves most of these from his phone. You watch, confirm, and act on exceptions.</p>
+
+  <div class="callout amber">
+    <strong>Remember</strong>
+    Casey moves statuses 2-5 from his phone using ClearPath. You rarely change them manually. You watch the Schedule and act when a status stalls or skips.
+  </div>
+
+  <!-- SCHEDULED -->
+  <div class="status-card">
+    <div class="status-header">
+      <div class="status-name">1. Scheduled</div>
+      <div class="status-step">Office Action</div>
+    </div>
+    <div class="when">When: As soon as a service call is booked.</div>
+    <h4>What the office does</h4>
+    <ul>
+      <li>Confirm customer info is complete (phone, address, appliance type).</li>
+      <li>Assign Casey and set arrival window.</li>
+      <li>Note any parts Casey should bring.</li>
+    </ul>
+    <h4>Your notes</h4>
+    <textarea placeholder="Example: always confirm we have a phone number on file for text updates..."></textarea>
+  </div>
+
+  <!-- OMW -->
+  <div class="status-card">
+    <div class="status-header">
+      <div class="status-name">2. On The Way (OMW)</div>
+      <div class="status-step">Tech Moves This</div>
+    </div>
+    <div class="when">When: Casey taps OMW from his phone after leaving the last job or the shop.</div>
+    <h4>What the office does</h4>
+    <ul>
+      <li>Confirm customer got the OMW text (check the customer's communication log if needed).</li>
+      <li>If Casey is running late to the window, call the customer proactively.</li>
+    </ul>
+    <h4>Your notes</h4>
+    <textarea placeholder="Example: if no OMW by 15 min before the window, call Casey..."></textarea>
+  </div>
+
+  <!-- ON SITE -->
+  <div class="status-card">
+    <div class="status-header">
+      <div class="status-name">3. On Site</div>
+      <div class="status-step">Tech Moves This</div>
+    </div>
+    <div class="when">When: Casey arrives at the customer's home and taps <em>On Site</em>.</div>
+    <h4>What the office does</h4>
+    <ul>
+      <li>Nothing — this is just visibility. You know he is there.</li>
+    </ul>
+  </div>
+
+  <!-- IN PROGRESS -->
+  <div class="status-card">
+    <div class="status-header">
+      <div class="status-name">4. In Progress</div>
+      <div class="status-step">Tech Moves This</div>
+    </div>
+    <div class="when">When: Casey starts the diagnostic or the repair.</div>
+    <h4>What the office does</h4>
+    <ul>
+      <li>Monitor for customer messages or questions that come into the office phone.</li>
+      <li>If Casey radios in for a part price or authorization, pull it up and text him back.</li>
+    </ul>
+  </div>
+
+  <!-- WORK COMPLETED -->
+  <div class="status-card">
+    <div class="status-header">
+      <div class="status-name">5. Work Completed</div>
+      <div class="status-step">Trigger for Office</div>
+    </div>
+    <div class="when">When: Casey finishes the visit (either diagnosed or repair done) and taps <em>Work Completed</em>.</div>
+    <h4>What the office does</h4>
+    <ul>
+      <li>If the visit was <strong>diagnostic only</strong> → build the <strong>Estimate</strong> using Casey's diagnosis notes, then send to customer.</li>
+      <li>If the visit was <strong>approved repair</strong> → convert estimate to <strong>Invoice</strong> and send for payment.</li>
+      <li>If customer paid at the door → mark invoice as <strong>Paid</strong>.</li>
+    </ul>
+    <h4>Your notes</h4>
+    <textarea placeholder="Example: check Casey's photos and notes before building the estimate..."></textarea>
+  </div>
+
+  <div class="callout green">
+    <strong>How this maps to HCP</strong>
+    HCP's 6-step flow (Add Appointment → OMW → Start → Finish → Invoice → Pay) is roughly the same path — FieldPulse just separates the estimate and invoice stages into their own workflows. That is why you get cleaner visibility.
+  </div>
+</section>
+
+<!-- =================== ESTIMATES =================== -->
+<section class="panel" id="estimates">
+  <h2>Estimates and approvals</h2>
+  <p class="section-sub">The $95 diagnostic, Option 1 / Option 2 logic, and how approvals work in FieldPulse.</p>
+
+  <div class="path-card">
+    <div class="path-title">The $95 diagnostic flow</div>
+    <div class="path-sub">Same as HCP — you just build the estimate inside FieldPulse now.</div>
+
+    <h3>Step-by-step</h3>
+    <ol class="steps">
+      <li>After Casey marks the job <strong>Work Completed</strong>, open the job.</li>
+      <li>Click the <strong>Estimate</strong> tab inside the job.</li>
+      <li>Click <strong>+ New Estimate</strong>.</li>
+      <li>Line 1: <strong>$95 Diagnostic</strong>. This is always on the estimate first.</li>
+      <li>Add <strong>Option 1</strong> (recommended repair): parts + labor. FieldPulse lets you group them as a single line bundle or separate lines.</li>
+      <li>Add <strong>Option 2</strong> (alternate repair or replacement recommendation).</li>
+      <li>Note in the terms section: <em>"If customer proceeds with a repair option, the $95 diagnostic is waived."</em></li>
+      <li>Save and send to customer via email or text.</li>
+    </ol>
+  </div>
+
+  <h3>Estimate statuses</h3>
+  <table class="ref">
+    <thead>
+      <tr><th>Status</th><th>Meaning</th><th>Office Action</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="pill teal">Draft</span></td>
+        <td>You're still building it.</td>
+        <td>Finish and send.</td>
+      </tr>
+      <tr>
+        <td><span class="pill teal">Sent</span></td>
+        <td>Emailed / texted to customer.</td>
+        <td>Wait. Follow up in 24-48 hours if no response.</td>
+      </tr>
+      <tr>
+        <td><span class="pill green">Approved</span></td>
+        <td>Customer signed or accepted (digitally or you marked approved).</td>
+        <td>Convert to Invoice. Schedule the repair visit if parts are needed.</td>
+      </tr>
+      <tr>
+        <td><span class="pill red">Declined</span></td>
+        <td>Customer said no to both options.</td>
+        <td>Invoice the $95 diagnostic only. Close the job.</td>
+      </tr>
+      <tr>
+        <td><span class="pill amber">Expired / Follow-Up</span></td>
+        <td>7+ days with no response.</td>
+        <td>Follow up by text or call. If no response, invoice the $95 and close.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout amber">
+    <strong>Important — waiving the $95</strong>
+    When the customer approves Option 1 or 2, update the estimate: remove the $95 diagnostic line (or mark as waived). The invoice should only show the approved repair total. This is the same rule you already follow in HCP.
+  </div>
+
+  <h3>Your common follow-up scenarios</h3>
+  <div class="quick-grid">
+    <div class="quick-box">
+      <h4>Customer signed on the spot</h4>
+      <p>Casey tells you or the customer signed via text link. Mark estimate <em>Approved</em>. Convert to invoice. Schedule the repair.</p>
+    </div>
+    <div class="quick-box">
+      <h4>Customer wants to think on it</h4>
+      <p>Leave estimate <em>Sent</em>. Follow up in 24-48 hours. Note the follow-up date in the job's internal notes so it doesn't get lost.</p>
+    </div>
+    <div class="quick-box">
+      <h4>Customer declines</h4>
+      <p>Mark estimate <em>Declined</em>. Invoice only the $95 diagnostic. Send invoice. Collect. Close job.</p>
+    </div>
+    <div class="quick-box">
+      <h4>Customer ghosts</h4>
+      <p>After 7 days with no response, invoice the $95 diagnostic and close. This is the rule — don't let them sit open.</p>
+    </div>
+  </div>
+
+  <h3>Your fill-in notes</h3>
+  <div class="status-card">
+    <h4>Our rule: when do you start following up?</h4>
+    <textarea placeholder="Example: follow up at 48 hours, then again at day 5, then invoice the $95 at day 7..."></textarea>
+    <h4 style="margin-top: 12px;">Our rule: who approves waiving the $95 if the customer pushes back?</h4>
+    <textarea placeholder="Example: Morgan or Taylor only..."></textarea>
+  </div>
+</section>
+
+<!-- =================== INVOICES =================== -->
+<section class="panel" id="invoices">
+  <h2>Invoicing and payment</h2>
+  <p class="section-sub">Once work is approved and complete, how to get paid.</p>
+
+  <h3>Step-by-step — after repair is complete</h3>
+  <ol class="steps">
+    <li>Open the job. Click the <strong>Estimate</strong> that is <em>Approved</em>.</li>
+    <li>Click <strong>Convert to Invoice</strong>. FieldPulse pulls over the approved lines.</li>
+    <li>Review the invoice for accuracy — parts, labor, warranty terms.</li>
+    <li>Confirm the <strong>$95 diagnostic is removed / waived</strong> if applicable.</li>
+    <li>Click <strong>Send Invoice</strong> — customer gets it by email or text with a pay link.</li>
+    <li>When customer pays online, invoice auto-marks <em>Paid</em>.</li>
+    <li>If customer pays Casey at the door (card or check), log the payment manually and mark <em>Paid</em>.</li>
+  </ol>
+
+  <h3>Invoice statuses</h3>
+  <table class="ref">
+    <thead>
+      <tr><th>Status</th><th>Meaning</th><th>Office Action</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="pill teal">Draft</span></td>
+        <td>Built but not sent.</td>
+        <td>Review and send.</td>
+      </tr>
+      <tr>
+        <td><span class="pill teal">Sent</span></td>
+        <td>Emailed to customer, waiting for payment.</td>
+        <td>Watch for payment. Follow up at 7 days if not paid.</td>
+      </tr>
+      <tr>
+        <td><span class="pill green">Paid</span></td>
+        <td>Payment received and posted.</td>
+        <td>Done — close the job.</td>
+      </tr>
+      <tr>
+        <td><span class="pill red">Overdue</span></td>
+        <td>Not paid past due date.</td>
+        <td>Call customer. Resend invoice. Escalate to Morgan if 14+ days overdue.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout green">
+    <strong>Payments is already live for you</strong>
+    You're already taking card payments through FieldPulse — no new setup. Customers can pay via the invoice link, Casey can run cards at the door from his phone, and everything posts back to the same invoice automatically.
+  </div>
+
+  <h3>Your fill-in notes</h3>
+  <div class="status-card">
+    <h4>When do we send the first payment reminder?</h4>
+    <textarea placeholder="Example: reminder at day 3, day 7, and day 14..."></textarea>
+    <h4 style="margin-top: 12px;">At what point do we flag Morgan for help collecting?</h4>
+    <textarea placeholder="Example: 14 days overdue, or if invoice is over $500..."></textarea>
+  </div>
+</section>
+
+<!-- =================== REFERENCE =================== -->
+<section class="panel" id="reference">
+  <h2>Quick reference</h2>
+  <p class="section-sub">Things you will look up a lot in the first two weeks.</p>
+
+  <h3>Where to find things</h3>
+  <div class="quick-grid">
+    <div class="quick-box">
+      <h4>Today's schedule</h4>
+      <p>See what's booked, who's assigned, what time each job is.</p>
+      <span class="path">Left panel → Schedule</span>
+    </div>
+    <div class="quick-box">
+      <h4>All jobs</h4>
+      <p>Filter by status, by customer, by date range.</p>
+      <span class="path">Left panel → Jobs</span>
+    </div>
+    <div class="quick-box">
+      <h4>All customers</h4>
+      <p>Look up history, past jobs, notes.</p>
+      <span class="path">Left panel → Customers</span>
+    </div>
+    <div class="quick-box">
+      <h4>Open estimates</h4>
+      <p>Everything waiting for approval.</p>
+      <span class="path">Left panel → Estimates → filter Sent</span>
+    </div>
+    <div class="quick-box">
+      <h4>Unpaid invoices</h4>
+      <p>Money still owed to you.</p>
+      <span class="path">Left panel → Invoices → filter Sent / Overdue</span>
+    </div>
+    <div class="quick-box">
+      <h4>Customer communications</h4>
+      <p>All texts and emails sent to each customer.</p>
+      <span class="path">Customer record → Communications tab</span>
+    </div>
+  </div>
+
+  <h3>Red flags — act on these fast</h3>
+  <table class="ref">
+    <thead>
+      <tr><th>If you see…</th><th>What to do</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Job stuck in <strong>On Site</strong> for over 90 minutes with no update</td>
+        <td>Check in with Casey by text.</td>
+      </tr>
+      <tr>
+        <td>Job in <strong>Work Completed</strong> but no estimate or invoice built after 24 hours</td>
+        <td>Build it now — that's revenue sitting still.</td>
+      </tr>
+      <tr>
+        <td>Estimate <strong>Sent</strong> for more than 48 hours with no response</td>
+        <td>Follow up with customer by text or call.</td>
+      </tr>
+      <tr>
+        <td>Invoice <strong>Overdue</strong> for more than 7 days</td>
+        <td>Call the customer. Resend the invoice with the payment link.</td>
+      </tr>
+      <tr>
+        <td>Customer asks for a refund or credit</td>
+        <td>Flag Morgan or Taylor. Don't issue without approval.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Who to ask when stuck</h3>
+  <div class="quick-grid">
+    <div class="quick-box">
+      <h4>Taylor (Office Manager)</h4>
+      <p>For anything workflow, process, or customer-related.</p>
+    </div>
+    <div class="quick-box">
+      <h4>Morgan (Owner)</h4>
+      <p>For pricing exceptions, refunds, or escalations.</p>
+    </div>
+    <div class="quick-box">
+      <h4>Charlee (FieldPulse CS)</h4>
+      <p>For anything FieldPulse isn't doing what you expect. Looped in via Taylor.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>First 2 weeks</strong>
+    Expect to look things up a lot. That's normal. By week 3 this guide will feel like muscle memory. Keep it open on a tab.
+  </div>
+</section>
+
+</div>
+</main>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.panel');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    t.classList.add('active');
+    const target = document.getElementById(t.dataset.panel);
+    if (target) target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Appliances of Broward — Taylor's FieldPulse Playbook</title>
+<style>
+  :root {
+    --navy: #0A2342;
+    --navy-dark: #061629;
+    --teal: #0B7EA3;
+    --teal-light: #E6F3F8;
+    --green: #1A7F4B;
+    --green-light: #E4F3EB;
+    --amber: #B87A00;
+    --amber-light: #FBF2DD;
+    --red: #B42318;
+    --red-light: #FEE4E2;
+    --bg: #F7F9FB;
+    --card: #FFFFFF;
+    --border: #E3E8EE;
+    --border-strong: #CBD5E1;
+    --text: #1C2430;
+    --text-muted: #5A6878;
+    --text-faint: #8A96A3;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    font-size: 15px;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  header {
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+    color: white;
+    padding: 32px 0 28px;
+    border-bottom: 4px solid var(--teal);
+  }
+  .header-grid { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; }
+  .badge-small {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.5px; }
+  .subtitle { color: #C5DCE8; font-size: 14px; font-weight: 400; }
+  .csm-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    padding: 12px 16px;
+    min-width: 220px;
+  }
+  .csm-card .label { font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: #9FB8CA; margin-bottom: 4px; }
+  .csm-card .name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+  .csm-card .email { font-size: 12px; color: #C5DCE8; }
+
+  /* Nav tabs */
+  nav.tabs {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .tab-row {
+    display: flex;
+    gap: 2px;
+    overflow-x: auto;
+  }
+  .tab {
+    padding: 16px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+  .tab:hover { color: var(--text); background: var(--bg); }
+  .tab.active { color: var(--navy); border-bottom-color: var(--teal); background: var(--bg); }
+
+  main { padding: 32px 0 48px; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* Section headings */
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+  }
+  h2 + .section-sub { color: var(--text-muted); font-size: 13px; margin-bottom: 18px; }
+  h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 20px 0 10px;
+    letter-spacing: 0;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .card-title { font-size: 15px; font-weight: 700; color: var(--navy); }
+  .card-badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 10px;
+  }
+  .card-badge.foundation { background: var(--teal-light); color: var(--teal); }
+  .card-badge.action { background: var(--green-light); color: var(--green); }
+  .card-badge.note { background: var(--amber-light); color: var(--amber); }
+  .card-badge.warn { background: var(--red-light); color: var(--red); }
+
+  /* Top-5 settings grid */
+  .settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .setting-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--teal);
+    border-radius: 6px;
+    padding: 14px;
+  }
+  .setting-box .num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--teal);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .setting-box h4 { font-size: 14px; color: var(--navy); margin-bottom: 4px; }
+  .setting-box p { font-size: 13px; color: var(--text-muted); }
+  .setting-box .path {
+    font-family: Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    color: var(--text);
+    background: var(--bg);
+    padding: 4px 6px;
+    border-radius: 3px;
+    margin-top: 6px;
+    display: inline-block;
+  }
+
+  /* Workflow comparison table */
+  .flow-compare {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 13px;
+  }
+  .flow-compare th {
+    background: var(--navy);
+    color: white;
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .flow-compare td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .flow-compare tr:nth-child(even) td { background: var(--bg); }
+
+  /* Workflow worksheet (fillable) */
+  .worksheet {
+    background: white;
+    border: 2px dashed var(--border-strong);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 12px 0;
+  }
+  .worksheet-status {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--teal);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .worksheet-status .ws-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .worksheet-status .ws-name {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 14px;
+  }
+  .worksheet-status .ws-type {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 10px;
+    background: var(--teal-light);
+    color: var(--teal);
+  }
+  .ws-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .ws-cell label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .ws-cell textarea {
+    width: 100%;
+    min-height: 54px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px;
+    font-family: inherit;
+    font-size: 13px;
+    background: white;
+    resize: vertical;
+  }
+  .ws-cell textarea:focus {
+    outline: 2px solid var(--teal);
+    outline-offset: -1px;
+    border-color: var(--teal);
+  }
+
+  /* Relationship diagram */
+  .rel-diagram {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 12px 0;
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+  }
+  .rel-diagram svg { max-width: 100%; height: auto; }
+
+  /* Numbered steps */
+  .step-list { list-style: none; margin: 10px 0; }
+  .step-list li {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .step-list li:last-child { border-bottom: none; }
+  .step-num {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    background: var(--navy);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .step-body { flex: 1; }
+  .step-body strong { color: var(--navy); }
+  .step-body .path {
+    font-family: Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    color: var(--teal);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* Callout boxes */
+  .callout {
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    border-left: 4px solid;
+  }
+  .callout.info { background: var(--teal-light); border-color: var(--teal); }
+  .callout.success { background: var(--green-light); border-color: var(--green); }
+  .callout.warn { background: var(--amber-light); border-color: var(--amber); }
+  .callout.danger { background: var(--red-light); border-color: var(--red); }
+  .callout .co-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .callout.info .co-title { color: var(--teal); }
+  .callout.success .co-title { color: var(--green); }
+  .callout.warn .co-title { color: var(--amber); }
+  .callout.danger .co-title { color: var(--red); }
+  .callout p { font-size: 14px; color: var(--text); }
+
+  /* Advisory board */
+  .advisory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+    margin: 12px 0;
+  }
+  .advisor-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+  }
+  .advisor-role {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 2px;
+  }
+  .advisor-name { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .advisor-says { font-size: 13px; color: var(--text); line-height: 1.5; font-style: italic; }
+
+  /* KPI table */
+  .kpi-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 13px;
+  }
+  .kpi-table th, .kpi-table td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .kpi-table th {
+    background: var(--bg);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+  }
+  .kpi-table td.metric { font-weight: 700; color: var(--navy); }
+
+  /* Speed template phases */
+  .phase-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .phase-row:last-child { border-bottom: none; }
+  .phase-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+  .phase-label .week { display: block; color: var(--navy); font-size: 14px; margin-bottom: 2px; }
+  .phase-body ul { list-style: none; margin-top: 6px; }
+  .phase-body li {
+    padding: 4px 0;
+    font-size: 13px;
+    padding-left: 18px;
+    position: relative;
+  }
+  .phase-body li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 12px;
+    width: 8px;
+    height: 1px;
+    background: var(--teal);
+  }
+
+  /* Checklist */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    align-items: flex-start;
+  }
+  .checklist input[type="checkbox"] { margin-top: 4px; accent-color: var(--teal); }
+  .checklist li label { flex: 1; font-size: 13px; cursor: pointer; }
+
+  /* Status buckets */
+  .bucket-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: var(--bg);
+    border-radius: 4px;
+    margin-bottom: 4px;
+    font-size: 13px;
+  }
+  .bucket-count {
+    font-family: Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    color: var(--teal);
+    font-weight: 700;
+  }
+
+  footer {
+    background: var(--navy);
+    color: #9FB8CA;
+    padding: 16px 0;
+    font-size: 12px;
+    margin-top: 48px;
+  }
+  footer .wrap { display: flex; justify-content: space-between; }
+
+  @media (max-width: 720px) {
+    .header-grid { grid-template-columns: 1fr; }
+    .ws-grid { grid-template-columns: 1fr; }
+    .phase-row { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    nav.tabs { display: none; }
+    .panel { display: block !important; break-before: page; }
+    header { break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-grid">
+    <div>
+      <span class="badge-small">Appliances of Broward — Onboarding Reset</span>
+      <h1>Taylor's FieldPulse Playbook</h1>
+      <p class="subtitle">Train-the-trainer guide. Built for how y'all work — with the speed template, Company Settings foundation, and a workflow worksheet we fill in together.</p>
+    </div>
+    <div class="csm-card">
+      <div class="label">Your CSM</div>
+      <div class="name">Charlee Joyce</div>
+      <div class="email">charlee.joyce@fieldpulse.com</div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs">
+  <div class="wrap">
+    <div class="tab-row">
+      <button class="tab active" data-target="foundation">1. Foundation</button>
+      <button class="tab" data-target="settings">2. Top 5 Settings</button>
+      <button class="tab" data-target="diagram">3. How It Connects</button>
+      <button class="tab" data-target="workflow">4. Workflow Worksheet</button>
+      <button class="tab" data-target="estimate">5. Estimate &amp; Invoice</button>
+      <button class="tab" data-target="clearpath">6. ClearPath (Wk 3-4)</button>
+      <button class="tab" data-target="plan">7. 30-Day Plan</button>
+      <button class="tab" data-target="success">8. What Success Looks Like</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+<!-- 1. FOUNDATION -->
+<section class="panel active" id="foundation">
+  <h2>Where we start, and why</h2>
+  <p class="section-sub">Company Settings is the foundation. Everything else bleeds out of it. If something downstream isn't flowing right, we come back here first.</p>
+
+  <div class="callout info">
+    <div class="co-title">The core idea</div>
+    <p>Company Settings is your administrative hub. The decisions we make here control what your office staff sees, what your techs see on their phones, what your customers receive in their inbox, and what lands in your bank account. Get this right once and the rest of FieldPulse starts working for you instead of against you.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">What's already working for you</span>
+      <span class="card-badge action">In place</span>
+    </div>
+    <ul class="checklist">
+      <li><input type="checkbox" checked disabled><label>FieldPulse Payments is set up and live</label></li>
+      <li><input type="checkbox" checked disabled><label>Your team has accounts: Morgan (owner), Taylor (office manager), Jordan (office support), Casey (field tech)</label></li>
+      <li><input type="checkbox" checked disabled><label>You've mapped out a diagnostic flow ($95 diagnostic, waived if they proceed, Option 1 vs Option 2)</label></li>
+      <li><input type="checkbox" checked disabled><label>Cancellation case is closed — you chose to stay</label></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">The gaps we're closing in 30 days</span>
+      <span class="card-badge note">The work</span>
+    </div>
+    <ol class="step-list">
+      <li><span class="step-num">1</span><div class="step-body"><strong>Workflow hasn't been nailed down.</strong> You've been running it in HCP style (Add Appointment → OMW → Start → Finish → Invoice → Pay) and trying to force it into FieldPulse. We need to commit to a FieldPulse-native workflow that handles your diagnostic/Option 1/Option 2 logic properly.</div></li>
+      <li><span class="step-num">2</span><div class="step-body"><strong>Estimate approval is mixed into the Job flow.</strong> FieldPulse released a separate Estimate Custom Status Workflow on 3/21/2026. That's the right home for Option 1/Option 2 approval — not the Job workflow.</div></li>
+      <li><span class="step-num">3</span><div class="step-body"><strong>Customer comms aren't automated yet.</strong> Once the workflow is locked, status changes will trigger the texts and emails for you. Right now you or the office are doing it manually.</div></li>
+      <li><span class="step-num">4</span><div class="step-body"><strong>Techs are seeing too much.</strong> Casey is looking at the full admin interface on his phone. ClearPath (Week 3-4) gives him a guided, simplified view so he can't miss a step.</div></li>
+    </ol>
+  </div>
+
+  <div class="callout warn">
+    <div class="co-title">One thing to know</div>
+    <p>FieldPulse does not do data migrations at no cost. Your customer list comes in through the <strong>Customer Import Tool</strong> (Customers → Import Customers, or send Charlee the CSV and she'll run it for you). That's included. A paid migration is a separate service that we're not doing here.</p>
+  </div>
+</section>
+
+<!-- 2. TOP 5 SETTINGS -->
+<section class="panel" id="settings">
+  <h2>The 5 Company Settings that matter most</h2>
+  <p class="section-sub">From Noor's Implementation playbook. These five pillars control everything else.</p>
+
+  <div class="settings-grid">
+    <div class="setting-box">
+      <div class="num">Pillar 1</div>
+      <h4>Users &amp; Permissions</h4>
+      <p>Who can see what. Admin (Morgan, Taylor), Team Manager, Service Agent (Casey). Permissions here also drive what shows up on the mobile app.</p>
+      <span class="path">Company Settings &rarr; User Accounts</span>
+    </div>
+    <div class="setting-box">
+      <div class="num">Pillar 2</div>
+      <h4>Features &amp; Add-ons</h4>
+      <p>Blue = your subscription features. Purple = paid add-ons. Confirm what's on. Turn off what you're not using so the interface stays clean.</p>
+      <span class="path">Company Settings &rarr; Features</span>
+    </div>
+    <div class="setting-box">
+      <div class="num">Pillar 3</div>
+      <h4>Customer Settings</h4>
+      <p>Custom fields, default tags, lead sources, and the Customer Import Tool. This is where your HCP customer list comes in.</p>
+      <span class="path">Company Settings &rarr; Customers</span>
+    </div>
+    <div class="setting-box">
+      <div class="num">Pillar 4</div>
+      <h4>Estimates &amp; Invoices</h4>
+      <p>Numbering, terminology rename (e.g., "Estimate" &rarr; "Quote" if you prefer), default email/text templates, logo on PDFs, contracts, and the new Custom Estimate/Invoice Status Workflows.</p>
+      <span class="path">Company Settings &rarr; Estimates &amp; Invoices</span>
+    </div>
+    <div class="setting-box">
+      <div class="num">Pillar 5</div>
+      <h4>Jobs &amp; Workflow</h4>
+      <p>Custom Job Statuses, subtask templates, automated communications (text/email triggers on status change). This is the backbone of daily operations.</p>
+      <span class="path">Company Settings &rarr; Jobs &rarr; Custom Status</span>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <div class="co-title">Best practice</div>
+    <p>Go through these five in order. Don't skip around. Each one builds on the last. If you try to set up workflow before users and permissions are right, you'll be redoing it.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">What we'll touch first (Week 1)</span>
+      <span class="card-badge foundation">Foundation</span>
+    </div>
+    <ul class="checklist">
+      <li><input type="checkbox"><label>Confirm all four users are set up with correct roles</label></li>
+      <li><input type="checkbox"><label>Audit Features tab — turn off anything not in use</label></li>
+      <li><input type="checkbox"><label>Set default tax rate(s) for Broward County</label></li>
+      <li><input type="checkbox"><label>Upload logo + configure default PDF layout</label></li>
+      <li><input type="checkbox"><label>Decide on terminology rename (Estimate vs. Quote, Job vs. Service Call, etc.)</label></li>
+      <li><input type="checkbox"><label>Set default email/text signatures</label></li>
+      <li><input type="checkbox"><label>Customer list: export from HCP, send to Charlee for import OR self-import</label></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 3. HOW IT CONNECTS -->
+<section class="panel" id="diagram">
+  <h2>How Company Settings controls everything downstream</h2>
+  <p class="section-sub">The "this equals that" map. When we change something in Company Settings, here's what it touches.</p>
+
+  <div class="rel-diagram">
+    <svg viewBox="0 0 900 640" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#5A6878"/>
+        </marker>
+      </defs>
+
+      <!-- Center node -->
+      <rect x="345" y="275" width="210" height="90" rx="12" fill="#0A2342" stroke="#0B7EA3" stroke-width="3"/>
+      <text x="450" y="308" text-anchor="middle" fill="white" font-size="16" font-weight="700" font-family="sans-serif">COMPANY SETTINGS</text>
+      <text x="450" y="328" text-anchor="middle" fill="#C5DCE8" font-size="12" font-family="sans-serif">The administrative hub</text>
+      <text x="450" y="347" text-anchor="middle" fill="#C5DCE8" font-size="11" font-family="sans-serif">Admin-only. Core config.</text>
+
+      <!-- Users node - top left -->
+      <rect x="50" y="40" width="180" height="72" rx="8" fill="#E6F3F8" stroke="#0B7EA3" stroke-width="1.5"/>
+      <text x="140" y="65" text-anchor="middle" fill="#0A2342" font-size="13" font-weight="700" font-family="sans-serif">Users &amp; Permissions</text>
+      <text x="140" y="84" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">controls who sees what</text>
+      <text x="140" y="100" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">(web + mobile)</text>
+
+      <!-- Customers node - top center -->
+      <rect x="360" y="40" width="180" height="72" rx="8" fill="#E6F3F8" stroke="#0B7EA3" stroke-width="1.5"/>
+      <text x="450" y="65" text-anchor="middle" fill="#0A2342" font-size="13" font-weight="700" font-family="sans-serif">Customers</text>
+      <text x="450" y="84" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">import from HCP,</text>
+      <text x="450" y="100" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">custom fields, tags</text>
+
+      <!-- Jobs node - top right -->
+      <rect x="670" y="40" width="180" height="72" rx="8" fill="#E6F3F8" stroke="#0B7EA3" stroke-width="1.5"/>
+      <text x="760" y="65" text-anchor="middle" fill="#0A2342" font-size="13" font-weight="700" font-family="sans-serif">Jobs &amp; Workflow</text>
+      <text x="760" y="84" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">custom statuses,</text>
+      <text x="760" y="100" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">subtasks, triggers</text>
+
+      <!-- Estimates node - right middle -->
+      <rect x="710" y="200" width="180" height="72" rx="8" fill="#E6F3F8" stroke="#0B7EA3" stroke-width="1.5"/>
+      <text x="800" y="225" text-anchor="middle" fill="#0A2342" font-size="13" font-weight="700" font-family="sans-serif">Estimates</text>
+      <text x="800" y="244" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">custom status,</text>
+      <text x="800" y="260" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">Option 1/Option 2</text>
+
+      <!-- Invoices node - right bottom -->
+      <rect x="710" y="370" width="180" height="72" rx="8" fill="#E6F3F8" stroke="#0B7EA3" stroke-width="1.5"/>
+      <text x="800" y="395" text-anchor="middle" fill="#0A2342" font-size="13" font-weight="700" font-family="sans-serif">Invoices</text>
+      <text x="800" y="414" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">custom status,</text>
+      <text x="800" y="430" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">payment terms</text>
+
+      <!-- Payments node - bottom right -->
+      <rect x="560" y="530" width="180" height="72" rx="8" fill="#E4F3EB" stroke="#1A7F4B" stroke-width="1.5"/>
+      <text x="650" y="555" text-anchor="middle" fill="#0A2342" font-size="13" font-weight="700" font-family="sans-serif">Payments</text>
+      <text x="650" y="574" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">already live,</text>
+      <text x="650" y="590" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">Pay Now on invoices</text>
+
+      <!-- Comms node - bottom center -->
+      <rect x="360" y="530" width="180" height="72" rx="8" fill="#E6F3F8" stroke="#0B7EA3" stroke-width="1.5"/>
+      <text x="450" y="555" text-anchor="middle" fill="#0A2342" font-size="13" font-weight="700" font-family="sans-serif">Customer Comms</text>
+      <text x="450" y="574" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">text/email templates,</text>
+      <text x="450" y="590" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">status-triggered</text>
+
+      <!-- ClearPath node - bottom left -->
+      <rect x="160" y="530" width="180" height="72" rx="8" fill="#FBF2DD" stroke="#B87A00" stroke-width="1.5"/>
+      <text x="250" y="555" text-anchor="middle" fill="#0A2342" font-size="13" font-weight="700" font-family="sans-serif">ClearPath (Mobile)</text>
+      <text x="250" y="574" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">tech focus view,</text>
+      <text x="250" y="590" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">action buttons</text>
+
+      <!-- Left Panel node - left middle -->
+      <rect x="10" y="370" width="180" height="72" rx="8" fill="#E6F3F8" stroke="#0B7EA3" stroke-width="1.5"/>
+      <text x="100" y="395" text-anchor="middle" fill="#0A2342" font-size="13" font-weight="700" font-family="sans-serif">Left Panel (Web)</text>
+      <text x="100" y="414" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">what modules show,</text>
+      <text x="100" y="430" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">driven by Features</text>
+
+      <!-- Custom Fields - left side -->
+      <rect x="10" y="200" width="180" height="72" rx="8" fill="#E6F3F8" stroke="#0B7EA3" stroke-width="1.5"/>
+      <text x="100" y="225" text-anchor="middle" fill="#0A2342" font-size="13" font-weight="700" font-family="sans-serif">Custom Fields</text>
+      <text x="100" y="244" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">customer / job /</text>
+      <text x="100" y="260" text-anchor="middle" fill="#5A6878" font-size="11" font-family="sans-serif">estimate fields</text>
+
+      <!-- Lines from center to each node -->
+      <line x1="400" y1="275" x2="230" y2="110" stroke="#5A6878" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="450" y1="275" x2="450" y2="115" stroke="#5A6878" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="500" y1="275" x2="670" y2="110" stroke="#5A6878" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+      <line x1="555" y1="300" x2="710" y2="235" stroke="#5A6878" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="555" y1="340" x2="710" y2="400" stroke="#5A6878" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+      <line x1="500" y1="365" x2="620" y2="530" stroke="#5A6878" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="450" y1="365" x2="450" y2="528" stroke="#5A6878" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="400" y1="365" x2="280" y2="530" stroke="#5A6878" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+      <line x1="345" y1="340" x2="190" y2="405" stroke="#5A6878" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="345" y1="300" x2="190" y2="235" stroke="#5A6878" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+      <!-- Labels on lines -->
+      <text x="170" y="200" fill="#0B7EA3" font-size="10" font-family="sans-serif" font-style="italic">controls visibility</text>
+      <text x="205" y="175" fill="#0B7EA3" font-size="10" font-family="sans-serif" font-style="italic">(web + mobile)</text>
+
+      <!-- Legend -->
+      <rect x="10" y="620" width="12" height="10" fill="#E6F3F8" stroke="#0B7EA3" stroke-width="1"/>
+      <text x="28" y="629" fill="#5A6878" font-size="10" font-family="sans-serif">Core modules</text>
+      <rect x="130" y="620" width="12" height="10" fill="#E4F3EB" stroke="#1A7F4B" stroke-width="1"/>
+      <text x="148" y="629" fill="#5A6878" font-size="10" font-family="sans-serif">Already live for you</text>
+      <rect x="270" y="620" width="12" height="10" fill="#FBF2DD" stroke="#B87A00" stroke-width="1"/>
+      <text x="288" y="629" fill="#5A6878" font-size="10" font-family="sans-serif">Coming Week 3-4</text>
+    </svg>
+  </div>
+
+  <div class="callout info">
+    <div class="co-title">How to use this diagram</div>
+    <p>When Casey says "I can't see the job on my phone" &rarr; go to Users &amp; Permissions. When Taylor asks "how do I add a field for refrigerator model?" &rarr; go to Custom Fields. When a customer says "I didn't get a text when you were OMW" &rarr; go to Customer Comms (which is triggered by Jobs &amp; Workflow status changes). Everything traces back to Company Settings.</p>
+  </div>
+</section>
+
+<!-- 4. WORKFLOW WORKSHEET -->
+<section class="panel" id="workflow">
+  <h2>Workflow worksheet — fill this in together</h2>
+  <p class="section-sub">Current HCP flow is 6 steps. Here's the proposed FieldPulse Job workflow (estimate approval moves to its own flow, see tab 5). Pre-filled with sensible defaults — edit in the session with Taylor.</p>
+
+  <div class="callout warn">
+    <div class="co-title">The insight we didn't have before</div>
+    <p>We were trying to build ONE 11-step workflow that handled everything. As of 3/21/2026, FieldPulse has <strong>three separate workflows</strong> (Jobs, Estimates, Invoices). This means the Job workflow stays short and simple. The diagnostic $95 &rarr; Option 1 / Option 2 approval happens in the <strong>Estimate workflow</strong>. Invoice sending/collecting happens in the <strong>Invoice workflow</strong>. Three clean swim lanes.</p>
+  </div>
+
+  <h3>HCP current state vs. FieldPulse target state</h3>
+  <table class="flow-compare">
+    <thead><tr><th style="width:50%">HCP today (6 steps)</th><th>FieldPulse proposed (5 Job statuses)</th></tr></thead>
+    <tbody>
+      <tr><td>Add Appointment</td><td>Scheduled</td></tr>
+      <tr><td>On My Way</td><td>On The Way (OMW)</td></tr>
+      <tr><td>Start</td><td>On Site</td></tr>
+      <tr><td>Finish</td><td>Work Completed</td></tr>
+      <tr><td>Invoice &rarr; Pay</td><td><em>Moves to Invoice workflow</em></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout success">
+    <div class="co-title">Why fewer job statuses is a win</div>
+    <p>Fewer statuses = less friction for Casey on the mobile app = fewer mistakes = cleaner reporting. Taylor doesn't have to remember 11 statuses. The estimate/approval complexity lives in the Estimate workflow where it belongs.</p>
+  </div>
+
+  <h3>Job workflow — per-status breakdown</h3>
+  <p style="font-size:13px; color:var(--text-muted); margin-bottom:10px;">For each status, answer: what's the <strong>office side</strong> doing, and what's the <strong>tech side</strong> doing? Fill in during your working session with Taylor. These are starter defaults.</p>
+
+  <div class="worksheet">
+    <div class="worksheet-status">
+      <div class="ws-header">
+        <span class="ws-name">1. Scheduled</span>
+        <span class="ws-type">Job Status: Active</span>
+      </div>
+      <div class="ws-grid">
+        <div class="ws-cell">
+          <label>Office side</label>
+          <textarea>Create the job. Link to the customer record. Schedule on calendar. Assign Casey. Confirm with customer via text template. If a diagnostic is needed, create the $95 diagnostic estimate and attach it to the job.</textarea>
+        </div>
+        <div class="ws-cell">
+          <label>Tech (Casey) side</label>
+          <textarea>Sees the job on his mobile calendar. Reviews the customer notes, address, appliance info, and attached diagnostic estimate. No action needed until morning of.</textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="worksheet-status">
+      <div class="ws-header">
+        <span class="ws-name">2. On The Way (OMW)</span>
+        <span class="ws-type">Job Status: Active</span>
+      </div>
+      <div class="ws-grid">
+        <div class="ws-cell">
+          <label>Office side</label>
+          <textarea>Nothing — this is triggered by Casey on the mobile app. A status change to OMW automatically fires the "tech is on the way" text to the customer with an ETA. Office monitors for any replies.</textarea>
+        </div>
+        <div class="ws-cell">
+          <label>Tech (Casey) side</label>
+          <textarea>Taps "OMW" button on mobile when leaving previous stop. This fires the customer text automatically. No manual texting.</textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="worksheet-status">
+      <div class="ws-header">
+        <span class="ws-name">3. On Site</span>
+        <span class="ws-type">Job Status: Active</span>
+      </div>
+      <div class="ws-grid">
+        <div class="ws-cell">
+          <label>Office side</label>
+          <textarea>Nothing — Casey controls this. Office is available to answer questions if Casey texts. If Casey finds the repair needed and builds Option 1/Option 2, office monitors Estimate workflow for approval.</textarea>
+        </div>
+        <div class="ws-cell">
+          <label>Tech (Casey) side</label>
+          <textarea>Taps "On Site" when he arrives. Performs diagnostic. Builds Option 1 and Option 2 estimate in FieldPulse on his phone. Customer signs on his device for approval.</textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="worksheet-status">
+      <div class="ws-header">
+        <span class="ws-name">4. In Progress (optional)</span>
+        <span class="ws-type">Job Status: Active</span>
+      </div>
+      <div class="ws-grid">
+        <div class="ws-cell">
+          <label>Office side</label>
+          <textarea>Used when Casey has to order parts and come back. Office orders parts and schedules return visit. Job stays In Progress until he's back.</textarea>
+        </div>
+        <div class="ws-cell">
+          <label>Tech (Casey) side</label>
+          <textarea>Marks job "In Progress" if parts need to be ordered. Adds note about what's needed. Returns on the rescheduled visit.</textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="worksheet-status">
+      <div class="ws-header">
+        <span class="ws-name">5. Work Completed</span>
+        <span class="ws-type">Job Status: Complete</span>
+      </div>
+      <div class="ws-grid">
+        <div class="ws-cell">
+          <label>Office side</label>
+          <textarea>Nothing — Casey closes the job. Status change to Completed automatically triggers the invoice to move from Draft to Sent in the Invoice workflow, which sends the Pay Now link to the customer.</textarea>
+        </div>
+        <div class="ws-cell">
+          <label>Tech (Casey) side</label>
+          <textarea>Taps "Completed" on mobile. Takes after-photos. Collects signature. Converts approved estimate to invoice. Job is closed from his side.</textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <div class="co-title">Configuration path</div>
+    <p>Company Settings &rarr; Jobs &rarr; Custom Status. Add these five statuses in order. Assign each one a color (green = active, blue = in progress, gray = complete). The customer communication template for OMW gets attached under Customer Communications &rarr; triggers.</p>
+  </div>
+</section>
+
+<!-- 5. ESTIMATE & INVOICE -->
+<section class="panel" id="estimate">
+  <h2>The Estimate and Invoice workflows (separate, new as of 3/21/2026)</h2>
+  <p class="section-sub">This is where Option 1 / Option 2 / approval lives. And the diagnostic $95 logic.</p>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Estimate workflow — handling the diagnostic + Option 1/Option 2</span>
+      <span class="card-badge foundation">12 status buckets available</span>
+    </div>
+    <ol class="step-list">
+      <li><span class="step-num">1</span><div class="step-body"><strong>Diagnostic Estimate Sent.</strong> Office creates a $95 diagnostic estimate and sends to customer on scheduling. Status: <em>Sent</em>.<br><span class="path">Estimate Custom Status: "Diagnostic - Sent"</span></div></li>
+      <li><span class="step-num">2</span><div class="step-body"><strong>Diagnostic Approved.</strong> Customer approves the diagnostic (signed on site by Casey). Status: <em>Accepted</em>.<br><span class="path">Estimate Custom Status: "Diagnostic - Accepted"</span></div></li>
+      <li><span class="step-num">3</span><div class="step-body"><strong>Repair Estimate Built (Option 1 + Option 2).</strong> Casey builds a repair estimate on site with two line items or two options. Status: <em>Draft</em> &rarr; <em>Sent</em>.<br><span class="path">Estimate Custom Status: "Repair - Draft" &rarr; "Repair - Sent"</span></div></li>
+      <li><span class="step-num">4</span><div class="step-body"><strong>Option Selected.</strong> Customer picks Option 1 or Option 2 and signs. $95 diagnostic waives automatically (configured as a line item credit on the repair estimate). Status: <em>Accepted</em>.<br><span class="path">Estimate Custom Status: "Repair - Accepted"</span></div></li>
+      <li><span class="step-num">5</span><div class="step-body"><strong>Convert to Invoice.</strong> Estimate converts to Invoice. This hands off to the Invoice workflow.<br><span class="path">Right-click estimate &rarr; Convert to Invoice</span></div></li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Invoice workflow</span>
+      <span class="card-badge foundation">7 status buckets available</span>
+    </div>
+    <ol class="step-list">
+      <li><span class="step-num">1</span><div class="step-body"><strong>Draft.</strong> Created automatically from accepted estimate. Office or tech reviews.</div></li>
+      <li><span class="step-num">2</span><div class="step-body"><strong>Sent.</strong> Invoice sent to customer with Pay Now link. Triggered automatically when Job status goes to Completed.</div></li>
+      <li><span class="step-num">3</span><div class="step-body"><strong>Paid.</strong> Payment received through FieldPulse Payments (already live for you). Status updates automatically when payment clears.</div></li>
+      <li><span class="step-num">4</span><div class="step-body"><strong>Overdue.</strong> System flags if payment isn't received within terms (set default in Company Settings &rarr; Estimates &amp; Invoices).</div></li>
+    </ol>
+  </div>
+
+  <div class="callout info">
+    <div class="co-title">Key unlock</div>
+    <p>Because you already have FieldPulse Payments live, the moment Casey taps "Completed" on the mobile app, three things happen automatically: (1) invoice goes from Draft to Sent, (2) customer gets email with Pay Now link, (3) when customer pays, invoice auto-moves to Paid and the money hits your bank. Zero manual office work between "tech done" and "money in".</p>
+  </div>
+</section>
+
+<!-- 6. CLEARPATH -->
+<section class="panel" id="clearpath">
+  <h2>ClearPath — setting Casey up for success (Week 3-4)</h2>
+  <p class="section-sub">ClearPath is the guided, simplified mobile view for field techs. Only on mobile. Only for Jobs (not estimates/invoices, yet).</p>
+
+  <div class="callout info">
+    <div class="co-title">What ClearPath actually does</div>
+    <p>Without ClearPath: Casey sees the full admin interface on his phone. Too many buttons, too many options, easy to miss a step. With ClearPath: he sees only the widgets and action buttons relevant to the status the job is in. Status Instructions tell him exactly what to do. Action Buttons let him do it in one tap.</p>
+  </div>
+
+  <h3>How it's configured</h3>
+  <ol class="step-list">
+    <li><span class="step-num">1</span><div class="step-body"><strong>Prerequisite:</strong> Job Custom Status Workflow must be set up first (that's tab 4).</div></li>
+    <li><span class="step-num">2</span><div class="step-body"><strong>Status Action Flow Planning Doc.</strong> We (Charlee + Taylor) work through a planning doc together. Four key questions: (a) What are you consistently reminding your team about? (b) What's being forgotten? (c) What prerequisites must be done before moving forward? (d) Best-case/worst-case scenarios on site?</div></li>
+    <li><span class="step-num">3</span><div class="step-body"><strong>Charlee opens a Salesforce case.</strong> Case Type: Status Action Flow Set Up. Planning Doc attached.</div></li>
+    <li><span class="step-num">4</span><div class="step-body"><strong>Tier II builds it in your account.</strong> This is a one-time implementation build on our side.</div></li>
+    <li><span class="step-num">5</span><div class="step-body"><strong>Casey gets trained on the new mobile view.</strong> Typically a 15-min walkthrough.</div></li>
+  </ol>
+
+  <h3>What each job status will have on Casey's phone</h3>
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Best practice widget order (from Confluence)</span>
+      <span class="card-badge note">Recommendation</span>
+    </div>
+    <p style="font-size:13px; margin-bottom:10px;">Top of screen to bottom of screen, in this order:</p>
+    <ol class="step-list">
+      <li><span class="step-num">1</span><div class="step-body"><strong>Job Title.</strong> What the job is.</div></li>
+      <li><span class="step-num">2</span><div class="step-body"><strong>Job Status.</strong> Where we are.</div></li>
+      <li><span class="step-num">3</span><div class="step-body"><strong>Status Instructions.</strong> Numbered list of exactly what to do right now.</div></li>
+      <li><span class="step-num">4</span><div class="step-body"><strong>Customer info + address.</strong> For the drive / the call.</div></li>
+      <li><span class="step-num">5</span><div class="step-body"><strong>Attached estimate/photos/notes.</strong> Context from office.</div></li>
+      <li><span class="step-num">6</span><div class="step-body"><strong>Action Buttons (at the bottom).</strong> Thumb-accessible. One-tap actions to move status forward, send customer text, add photo, etc.</div></li>
+    </ol>
+  </div>
+
+  <h3>The four planning questions we'll ask Taylor</h3>
+  <div class="worksheet">
+    <div class="worksheet-status">
+      <div class="ws-header"><span class="ws-name">1. What are you consistently reminding Casey about?</span></div>
+      <div class="ws-grid">
+        <div class="ws-cell" style="grid-column: 1 / -1;">
+          <label>Taylor's answer</label>
+          <textarea>[Fill in during session. Example: "remember to take before-photos", "confirm which appliance even if we told him"]</textarea>
+        </div>
+      </div>
+    </div>
+    <div class="worksheet-status">
+      <div class="ws-header"><span class="ws-name">2. What's being forgotten?</span></div>
+      <div class="ws-grid">
+        <div class="ws-cell" style="grid-column: 1 / -1;">
+          <label>Taylor's answer</label>
+          <textarea>[Fill in during session]</textarea>
+        </div>
+      </div>
+    </div>
+    <div class="worksheet-status">
+      <div class="ws-header"><span class="ws-name">3. What prerequisites must be done before moving forward?</span></div>
+      <div class="ws-grid">
+        <div class="ws-cell" style="grid-column: 1 / -1;">
+          <label>Taylor's answer</label>
+          <textarea>[Fill in during session. Example: diagnostic estimate approved before any repair work begins]</textarea>
+        </div>
+      </div>
+    </div>
+    <div class="worksheet-status">
+      <div class="ws-header"><span class="ws-name">4. Best case and worst case scenarios on site?</span></div>
+      <div class="ws-grid">
+        <div class="ws-cell" style="grid-column: 1 / -1;">
+          <label>Taylor's answer</label>
+          <textarea>[Fill in during session. Example: worst case = running late. Solution = "running late" action button that sends customer a text automatically.]</textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. 30-DAY PLAN -->
+<section class="panel" id="plan">
+  <h2>30-day plan — built on the Implementation Speed Template</h2>
+  <p class="section-sub">KTLO pace, adapted for where you are. 3 working sessions + async between.</p>
+
+  <div class="card">
+    <div class="phase-row">
+      <div class="phase-label"><span class="week">Week 1</span>Foundation</div>
+      <div class="phase-body">
+        <p style="font-size:13px; color:var(--text);"><strong>Session 1 — Company Settings + Customers.</strong> 60 min working session with Taylor.</p>
+        <ul>
+          <li>Lock down Users &amp; Permissions for all 4 users</li>
+          <li>Audit Features / turn off anything unused</li>
+          <li>Set tax rates, logo, default templates</li>
+          <li>Customer list: confirm HCP export ready &mdash; send to Charlee for Customer Import Tool OR self-import</li>
+          <li>Confirm Payments is live and settings are correct (already done &mdash; just verify)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="phase-row">
+      <div class="phase-label"><span class="week">Week 2</span>Workflows</div>
+      <div class="phase-body">
+        <p style="font-size:13px; color:var(--text);"><strong>Session 2 — Job + Estimate + Invoice workflows.</strong> 60 min working session with Taylor.</p>
+        <ul>
+          <li>Build the 5-status Job Custom Status Workflow (tab 4)</li>
+          <li>Build Estimate Custom Status Workflow for diagnostic + repair flow (tab 5)</li>
+          <li>Build Invoice Custom Status Workflow</li>
+          <li>Set up automated Customer Communications triggered by status changes (OMW text, invoice sent email, payment receipt)</li>
+          <li>Run one end-to-end test: dummy customer &rarr; dummy job &rarr; dummy estimate &rarr; dummy invoice &rarr; test payment</li>
+        </ul>
+      </div>
+    </div>
+    <div class="phase-row">
+      <div class="phase-label"><span class="week">Week 3</span>ClearPath Planning + Tech Training</div>
+      <div class="phase-body">
+        <p style="font-size:13px; color:var(--text);"><strong>Session 3 — ClearPath planning doc + Casey training.</strong> 60 min with Taylor, 20 min with Casey separately.</p>
+        <ul>
+          <li>Walk through the 4 ClearPath planning questions with Taylor</li>
+          <li>Charlee opens Salesforce case: "Status Action Flow Set Up" with planning doc attached</li>
+          <li>Train Casey on the FieldPulse mobile app (pre-ClearPath) &mdash; how to OMW, On Site, build estimate, close job</li>
+          <li>Office admin (Jordan) gets the Office Admin Quick Guide</li>
+        </ul>
+      </div>
+    </div>
+    <div class="phase-row">
+      <div class="phase-label"><span class="week">Week 4</span>Go Live + Check-in</div>
+      <div class="phase-body">
+        <p style="font-size:13px; color:var(--text);"><strong>Session 4 — Go-live check + 30-day health review.</strong> 30 min with Taylor.</p>
+        <ul>
+          <li>Tier II completes Status Action Flow / ClearPath build (Charlee confirms)</li>
+          <li>Casey gets trained on ClearPath (15 min walkthrough)</li>
+          <li>Full cutover from HCP: new jobs go into FieldPulse only</li>
+          <li>30-day health check: review the success metrics from tab 8</li>
+          <li>Plan Month 2 focus &mdash; add-ons (Pricebook, Engage, Fleet, Custom Forms) based on customer priority</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <div class="co-title">What we need from you (nothing else)</div>
+    <p>HCP customer list CSV export. Confirmation of team members + roles. Broward tax rate(s). Logo file. That's it. Everything else we build together in the sessions.</p>
+  </div>
+</section>
+
+<!-- 8. SUCCESS METRICS -->
+<section class="panel" id="success">
+  <h2>What success looks like on Day 30 — advisory board view</h2>
+  <p class="section-sub">Pulled from the FieldPulse Implementation Specialist KPIs on Confluence, adapted for Appliances of Broward.</p>
+
+  <div class="advisory-grid">
+    <div class="advisor-card">
+      <div class="advisor-role">Advisor</div>
+      <div class="advisor-name">Director of Customer Success</div>
+      <div class="advisor-says">"Retention signal stays green. The cancellation case from 4/17 doesn't re-open. Taylor's CSAT exit survey is positive. If Taylor feels confident training the team without Charlee in the room, we've succeeded."</div>
+    </div>
+    <div class="advisor-card">
+      <div class="advisor-role">Advisor</div>
+      <div class="advisor-name">Implementation Lead</div>
+      <div class="advisor-says">"Time-to-Value is the North Star. They've been 75+ days in — that's a reset clock. In 30 days we want one full job going New Call to Paid entirely inside FieldPulse, no HCP touchpoints, no Taylor-in-the-middle. That's time to value."</div>
+    </div>
+    <div class="advisor-card">
+      <div class="advisor-role">Advisor</div>
+      <div class="advisor-name">COO perspective</div>
+      <div class="advisor-says">"Scalability test: can the business absorb a second tech without Taylor drowning? If the workflow is right, answer is yes. That's what this really unlocks for them operationally."</div>
+    </div>
+    <div class="advisor-card">
+      <div class="advisor-role">Advisor</div>
+      <div class="advisor-name">Product / Adoption</div>
+      <div class="advisor-says">"Invoice-to-Payment cycle time. Since Payments is already live, the measurable win is: average days between invoice-sent and invoice-paid drops below 7. That proves the workflow is actually working end-to-end."</div>
+    </div>
+  </div>
+
+  <h3>Translated into measurable targets</h3>
+  <table class="kpi-table">
+    <thead><tr><th>Metric</th><th>FieldPulse standard</th><th>Appliances of Broward target (Day 30)</th></tr></thead>
+    <tbody>
+      <tr><td class="metric">Time to Value</td><td>90% of accounts live in 60 days</td><td>First full job lifecycle (Scheduled &rarr; Paid) completed in FieldPulse by Day 30</td></tr>
+      <tr><td class="metric">CSAT (Onboarding)</td><td>Positive exit survey</td><td>Taylor confirms she can train the team without Charlee in the room</td></tr>
+      <tr><td class="metric">Payment Adoption</td><td>75% of invoices paid through FieldPulse Payments</td><td>Already live &rarr; pivot to <strong>invoice-to-payment cycle time under 7 days average</strong></td></tr>
+      <tr><td class="metric">Workflow Adoption</td><td>Custom Status Workflow in daily use</td><td>100% of new jobs use the FieldPulse workflow, zero HCP fallback</td></tr>
+      <tr><td class="metric">Tech Adoption (ClearPath)</td><td>Mobile-first usage by field team</td><td>Casey completing jobs on ClearPath mobile view by Day 30</td></tr>
+      <tr><td class="metric">Retention</td><td>Cancellation case remains closed</td><td>April 17 save case stays closed through 60-day check-in</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout success">
+    <div class="co-title">Day 30 one-liner</div>
+    <p>Taylor schedules a job. Casey runs it on his phone. Customer gets automated texts. Payment lands in Morgan's bank. All inside FieldPulse. Zero HCP. No Taylor-in-the-middle. That's Day 30.</p>
+  </div>
+
+  <h3>What we measure at 60 days (Month 2)</h3>
+  <div class="card">
+    <ul class="checklist">
+      <li><input type="checkbox"><label>At least one add-on active (Pricebook, Custom Forms, Engage, or Fleet &mdash; customer priority driven)</label></li>
+      <li><input type="checkbox"><label>ClearPath fully adopted by Casey</label></li>
+      <li><input type="checkbox"><label>Taylor is running weekly reporting out of FieldPulse (not exporting to Excel)</label></li>
+      <li><input type="checkbox"><label>QuickBooks sync live if applicable</label></li>
+      <li><input type="checkbox"><label>Invoice-to-payment cycle time trending downward</label></li>
+      <li><input type="checkbox"><label>Second tech onboardable without Taylor drowning</label></li>
+    </ul>
+  </div>
+</section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Taylor's FieldPulse Playbook &middot; Appliances of Broward &middot; Built for training, not for customers.</div>
+    <div>Charlee Joyce &middot; Updated April 21, 2026</div>
+  </div>
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.panel');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.target).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }));
+</script>
+</body>
+</html>
